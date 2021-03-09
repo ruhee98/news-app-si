@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useRef, useEffect} from 'react';
 import styles from './styles';
 
 
@@ -35,11 +35,18 @@ class HeaderComponent extends React.Component {
             <li><a class="dropdown-item" href="#">Politics</a></li>
             <li><a class="dropdown-item" href="#">Reviews</a></li>
           </ul>
+          
         </li>
+        
       </ul>
+      <form class="d-flex">
+      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
+      <button class="btn btn-outline-success" type="submit">Search</button>
+    </form>
     </div>
   </div>
 </nav>
+
             </div>
            
         )
