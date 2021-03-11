@@ -1,51 +1,43 @@
-import React, {useRef, useEffect} from 'react';
+import React from 'react';
 import styles from './styles';
-
+import {Navbar, Nav, NavDropdown, Form, Button, FormControl } from 'react-bootstrap';
+import {LinkContainer} from 'react-router-bootstrap';
 
 class HeaderComponent extends React.Component {
 
     render(){
         return(
            <div>
-              <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">News Aggregator</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNavDropdown">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/latest">Latest</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/popular">Most Popular</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="/categories" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Categories
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <li><a class="dropdown-item" href="/categories/entertainment">Entertainment</a></li>
-            <li><a class="dropdown-item" href="/categories/tech">Technology</a></li>
-            <li><a class="dropdown-item" href="#">Business</a></li>
-            <li><a class="dropdown-item" href="#">Politics</a></li>
-            <li><a class="dropdown-item" href="#">Reviews</a></li>
-          </ul>
-          
-        </li>
-        
-      </ul>
-      <form class="d-flex">
-      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-      <button class="btn btn-outline-success" type="submit">Search</button>
-    </form>
-    </div>
-  </div>
-</nav>
+             <Navbar bg="dark" variant='dark' expand="lg">
+  <Navbar.Brand href="#home">News Feed</Navbar.Brand>
+  <Navbar.Toggle aria-controls="basic-navbar-nav" />
+  <Navbar.Collapse id="basic-navbar-nav">
+    <Nav className="mr-auto">
+      <LinkContainer to="/">
+      <Nav.Link>Home</Nav.Link>
+      </LinkContainer>
+      <LinkContainer to="/latest">
+      <Nav.Link>Latest</Nav.Link>
+      </LinkContainer>
+      <LinkContainer to="/popular">
+      <Nav.Link>Most Popular</Nav.Link>
+      </LinkContainer>
+      <NavDropdown title="Categories" id="basic-nav-dropdown">
+        <NavDropdown.Item href="/category/business">Business</NavDropdown.Item>
+        <NavDropdown.Item href="/category/us-politics"> US Politics</NavDropdown.Item>
+        <NavDropdown.Item href="/category/tech">Science and Technology</NavDropdown.Item>
+        <NavDropdown.Item href="/category/entertainment">Entertainment</NavDropdown.Item>
+        <NavDropdown.Divider />
+        <NavDropdown.Item href="/category/reviews">Reviews</NavDropdown.Item>
+        <NavDropdown.Item href="/category/covid-19">Covid-19 Data</NavDropdown.Item>
+      </NavDropdown>
+    </Nav>
+    <Form inline>
+      <FormControl type="text" placeholder="Search" className="mr-sm-2" />
+      <Button variant="outline-success">Search</Button>
+    </Form>
+  </Navbar.Collapse>
+</Navbar>
 
             </div>
            
