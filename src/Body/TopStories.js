@@ -1,9 +1,12 @@
 import React, {Fragment} from 'react';
+import HeaderWithProfile from '../Header/HeaderWithProfile';
 
-export function TopStories(){
+
+export function topStories(){
     return(  
     <Fragment>
-           Top Stories
+        <HeaderWithProfile />
+        More Latest News.. 
     </Fragment>
     ) 
     

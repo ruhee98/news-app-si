@@ -1,10 +1,9 @@
-import React from 'react';
-import {Navbar, Nav, Form, Button, FormControl } from 'react-bootstrap';
+import React, {useState} from 'react';
+import {Navbar, Nav, Alert, Button, FormControl } from 'react-bootstrap';
 import {LinkContainer} from 'react-router-bootstrap';
 
-class HeaderComponent extends React.Component {
+export default function HeaderWithProfile() {
 
-    render(){
         return(
            <div>
              <Navbar bg="dark" variant='dark' expand="lg">
@@ -24,15 +23,13 @@ class HeaderComponent extends React.Component {
       <LinkContainer to="/topics">
       <Nav.Link>Topics</Nav.Link>
       </LinkContainer>
-      <Nav.Item className="ml-auto">
-      <LinkContainer to="/signUp">
-        <Nav.Link>Sign Up </Nav.Link>
+      <LinkContainer to="/saved-articles">
+        <Nav.Link>Saved List</Nav.Link>
         </LinkContainer>
-        </Nav.Item>
-      <LinkContainer to="/login">
-      <Nav.Link>Login</Nav.Link>
+      <LinkContainer to="/profile">
+      <Nav.Link>Profile</Nav.Link>
       </LinkContainer>
-    </Nav>
+      </Nav>
     {/* <Form inline>
       <FormControl type="text" placeholder="Search" className="mr-sm-2" />
       <Button variant="outline-success">Search</Button>
@@ -43,9 +40,8 @@ class HeaderComponent extends React.Component {
             </div>
            
         )
-    }
 }
 
 
 
-export default HeaderComponent;
+

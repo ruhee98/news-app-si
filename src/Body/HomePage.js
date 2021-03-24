@@ -1,7 +1,8 @@
 import React, {Fragment, useState, useEffect} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {NewsArticle} from '../Body/NewsArticle'
-import {Container, Row, Col} from 'react-bootstrap';
+import {Row, Col} from 'react-bootstrap';
+import HeaderWithProfile from '../Header/HeaderWithProfile';
 const HomePage = () => {
   const [result, setResult] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -11,27 +12,35 @@ const HomePage = () => {
   }, []);
   
   const getLatestNews = async () =>{
-      let url = 'https://newsapi.org/v2/top-headlines?country=us&apiKey=3dbf4804a7314e538a44f7116e934965';
+      let url = `https://newsapi.org/v2/top-headlines?country=us&apiKey=${process.env.REACT_APP_API_KEY_NEWS}`;
       const response = await fetch(url);
       const data = await response.json();
       console.log(data);
+      console.log(process.env);
       setResult(data.articles);
       setLoading(false);
   }
 
   return (
     <Fragment>
-      <Container>
+      <HeaderWithProfile />
+      <h4>
+        Latest News
+      </h4>
         <Row>
        {loading || !result? 
         <div> loading.. </div> : 
         result.map(news => 
-        (<Col sm={4}>
+        (<Col md={4}>
         <NewsArticle news={news} key={news.url} />
         </Col>
         ))}
       </Row>
-      </Container>
+      <br />
+      <br />
+     
+      
+        
       </Fragment>
   );
 };

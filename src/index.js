@@ -4,9 +4,13 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import AppRouter from './Routers/AppRouter';
+import {AuthProvider} from './firebase/AuthProvider';
+import {BrowserRouter} from 'react-router-dom';
+
 
 ReactDOM.render(
-  <AppRouter />,
+     <AppRouter />
+,
   document.getElementById('root')
 );
 

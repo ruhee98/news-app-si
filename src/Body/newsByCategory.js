@@ -1,21 +1,18 @@
 import React from 'react';
+import {Card, Button} from 'react-bootstrap';
 
-import {Link} from 'react-router-dom';
+export const NewsByCategory = ({news}) => {
+    return (
+        <Card>
+        <Card.Img variant="top" src={news.urlToImage}/> 
 
-const newsByCategory = ({match}) => (
-    <div>
-     <ul>
-       <li>
-        <Link to={`${match.url}/business`}>Business</Link>
-      </li>
-      <li>
-        <Link to={`${match.url}/entertainment`}>Entertainment</Link>
-       </li>
-     <li>
-       <Link to={`${match.url}/tech`}>Technology</Link>
-      </li>
-    </ul>
-    </div>
-);
-
-export default newsByCategory;
+        <Card.Body>
+    <Card.Title>{news.title}</Card.Title>
+    <Card.Text>
+      {news.description}
+    </Card.Text>
+    <Card.Link href={news.url}>{news.source.name}</Card.Link>
+  </Card.Body>
+</Card>
+    )
+}

@@ -1,26 +1,43 @@
-import React from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import Header from '../Header/header';
+import  React, {Fragment} from 'react';
+import {BrowserRouter, Route, Switch } from 'react-router-dom';
 import HomePage from '../Body/HomePage';
-import { TopStories } from '../Body/TopStories';
-import newsByCategory from '../Body/newsByCategory';
-import { PopularStories } from '../Body/PopularStories';
-
-
+import {Categories} from '../Body/Categories';
+import { topStories } from '../Body/TopStories';
+import NYTNews from '../Body/PopularStories';
+import SignUp from '../Body/SignUp';
+import Login from '../Body/Login';
+import {AuthProvider} from '../firebase/AuthProvider'
+import {PrivateRoute} from "./PrivateRoute";
+import { ProfilePage } from '../Body/ProfilePage';
+import { ForgotPasswordPage} from '../Body/ForgotPasswordPage';
+import { UpdateProfile} from '../Body/UpdateProfile';
+import {ReadingList} from '../Body/ReadingList';
 const AppRouter = () => {
+
   return (
-    <BrowserRouter>
+    <Fragment>
       <div className="container">
-        <Header />
+    <BrowserRouter>
+        <br />
+        <AuthProvider>
         <Switch>
-          <Route path="/" component={HomePage} exact={true} />
-          <Route path="/latest"component={TopStories} />
-          <Route path="/popular" component={PopularStories} />
-          <Route path="/category/categoryName" component={newsByCategory}/>
-          
+          <PrivateRoute path="/" component={HomePage} exact={true} />
+          <Route path="/latest" component={topStories} />
+          <Route path="/nyt-news" component={NYTNews} />
+          <Route path="/topics" component={Categories} />
+          <Route path="/signUp" component={SignUp} />
+          <Route path="/login" component={Login} />
+          <PrivateRoute path="/passwordReset" component={ForgotPasswordPage} />
+          <PrivateRoute path="/profile" component={ProfilePage} />
+          <PrivateRoute path="/update-profile" component={UpdateProfile} />
+          <PrivateRoute path="/saved-articles" component={ReadingList} />
         </Switch>
-      </div>
-    </BrowserRouter>
+        </AuthProvider>
+        
+  </BrowserRouter>
+  </div>
+    </Fragment>
+
   );
 };
 
