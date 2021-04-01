@@ -1,7 +1,7 @@
 import React, {useRef, useState} from 'react';
 import {Container, Card, Form, Alert, Button} from 'react-bootstrap';
 import {Link, useHistory} from 'react-router-dom';
-import {useAuth} from '../firebase/AuthProvider'
+import {useAuth} from '../../firebase/AuthProvider'
 
 const SignUp = () => {
   const emailRef = useRef();

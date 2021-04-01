@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
 import {Alert, Card, Button} from 'react-bootstrap';
-import {useAuth} from '../firebase/AuthProvider';
+import {useAuth} from '../../firebase/AuthProvider';
 import {Link, useHistory } from 'react-router-dom';
-import HeaderWithProfile from '../Header/HeaderWithProfile'
+import HeaderWithProfile from '../../Header/HeaderWithProfile'
 
 
 export const ProfilePage = () => {

@@ -1,6 +1,4 @@
 import React, {useContext, useState, useEffect} from 'react';
-// import SignUp from '../Body/SignUp';
-// import {AuthMethods} from '../firebase/AuthMethods'
 import {auth} from './firebase';
 
 //tool that allows u to propogate data
@@ -13,7 +11,6 @@ export function useAuth() {
     
 // stores user's authentication status
 export function AuthProvider({children}){
-    // const[inputs, setInputs] = useState({email: '', password: ''})
     const [loading, setLoading] = useState(false);
     const [currentUser, setCurrentUser] = useState()
 

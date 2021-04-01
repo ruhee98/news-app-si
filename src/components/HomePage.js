@@ -1,6 +1,6 @@
 import React, {Fragment, useState, useEffect} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {NewsArticle} from '../Body/NewsArticle'
+import {NewsArticle} from '../components/NewsArticle'
 import {Row, Col} from 'react-bootstrap';
 import HeaderWithProfile from '../Header/HeaderWithProfile';
 const HomePage = () => {

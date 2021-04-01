@@ -1,7 +1,6 @@
 import React from "react";
 import {useAuth} from '../firebase/AuthProvider'
 import {Route, Redirect} from 'react-router-dom';
-import HeaderComponent from "../Header/header";
 
 
 export const PrivateRoute = ({component: HeaderWithProfile, ...rest}) => {

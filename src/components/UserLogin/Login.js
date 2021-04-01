@@ -1,44 +1,42 @@
 import React, {useContext, useRef, useState} from 'react';
 import {Container, Card, Form, Alert, Button} from 'react-bootstrap';
 import {Link, useHistory} from "react-router-dom";
-import {useAuth} from '../firebase/AuthProvider'
+import {useAuth} from '../../firebase/AuthProvider'
 
-export const ForgotPasswordPage =  () => {
-    
+
+const LoginForm =  () => {
   const emailRef = useRef();
+  const passwordRef = useRef();
   const [error, setError] = useState('');
-  const [message, setMessage] = useState('');
   const [loading, setLoading] = useState(false);
 
-  const {resetPassword} = useAuth();
+  const {login, currentUser} = useAuth();
+  const history = useHistory();
 
   async function handleSubmit(e) {
     e.preventDefault()
 
     try{
-     
-      setMessage('')
       setError('')
       setLoading(true)
       await 
-      resetPassword(emailRef.current.value)
-      setMessage("Check your inbox for further instruction")
-    } catch {
-      setError("Failed to reset password");
+      login(emailRef.current.value, 
+        passwordRef.current.value)
+        history.push("/")
+    }catch {
+      setError("Failed to sign in");
     }
 
     setLoading(false)
     
   } 
-    return (
-        <div>
-            <div className="mt-8">
-                <Card>
-                <Card.Body>
-          <h3 className="text-center mb-4">Password Reset</h3>
+return (
+<div>
+<div className="mt-8">
+        <Card.Body>
+          <h3 className="text-center mb-4">Sign In</h3>
+        {currentUser && currentUser.email}
         {error && <Alert variant="danger">{error}</Alert>}
-        {message && <Alert variant="success">{message}</Alert>}
-
         </Card.Body>
         <Form onSubmit={handleSubmit}>
           <Form.Label className="block">
@@ -50,33 +48,44 @@ export const ForgotPasswordPage =  () => {
             ref={emailRef}
             placeholder="E.g: faruq123@gmail.com"
           />
+          <Form.Label className="block">
+            Password:
+          </Form.Label>
+          <Form.Control
+            type="password"
+            className="mt-1 mb-3 p-1 w-full"
+            name="userPassword"
+            ref = {passwordRef}
+            placeholder="Your Password"
+          />
           <Button 
           disabled={loading} 
           className="w-100"
           variant="primary" 
           type="submit"  >
-            Reset Password
+            Login
           </Button>
           <br />
           {/* <Button>
           Sign in with Google
         </Button> */}
-         <p className="text-center my-3">
-          <Link to = "/login" className="text-blue-500 hover:text-blue-600">
-           Log In
-          </Link>
-          <br />
+        </Form>
+        <p className="text-center my-3">
           Don't have an account?{" "}
           <Link to="/signUp" className="text-blue-500 hover:text-blue-600">
             Sign up here
           </Link>{" "}
-          <br />{" "} 
-          </p>
-
-        </Form>
-            </Card>         
-          
+          <br />{" "}
+          <Link to = "passwordReset" className="text-blue-500 hover:text-blue-600">
+            Forgot Password?
+          </Link>
+        </p>
       </div>
-        </div>
+    </div>
     )
 }
+
+export default LoginForm;
+
+
+

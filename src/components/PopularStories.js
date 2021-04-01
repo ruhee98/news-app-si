@@ -2,36 +2,69 @@ import React, {Fragment, useState, useEffect} from 'react';
 import {Row, Col, Button} from 'react-bootstrap';
 import NYTArticle  from './nytArticle';
 import HeaderWithProfile from '../Header/HeaderWithProfile'
+import ls from 'local-storage';
+import {useGlobalContext} from './Context';
+import SavedItem from './SavedItem';
 
 const NYTNews = () => {
 
-const [popularStories, setPopularStories] = useState([]);
 const [topStories, setTopStories] = useState([]);
+const [popularStories, setPopularStories] = useState([]);
+
 const [loading, setLoading] = useState(true);
 
-useEffect(() => {
-    getPopularStories();
-    getTopStories();
-  }, []);
 
-const getPopularStories = async () => {
+  const {dispatch} = useGlobalContext();
+
+  const getPopularStories = async () => {
     let url = `https://api.nytimes.com/svc/mostpopular/v2/viewed/1.json?api-key=${process.env.REACT_APP_API_KEY_NYT_NEWS}`;
     const response = await fetch(url);
-    const data = await response.json();
-    console.log(data);
-    setPopularStories(data.results);
-    setLoading(false);
+    dispatch({type: 'LOADING'})
+    const popularStories = await response.json();
+    console.log(popularStories);
+    setPopularStories(popularStories.results);
 }
+
+useEffect(() => {
+    getPopularStories()
+    getTopStories()
+},[])
 
 const getTopStories = async (section) => {
   let url = `https://api.nytimes.com/svc/topstories/v2/${section}.json?api-key=${process.env.REACT_APP_API_KEY_NYT_NEWS}`;
   const response = await fetch(url);
   const data = await response.json();
   console.log(data);
-  setTopStories(data.results);
   setLoading(false);
-
+  setTopStories(data.results);
 }
+
+// const handleSaveArticleToReadLater = (article) => {
+//   let currentReadLater = readLater.slice(0);
+//   let newReadLater = [...currentReadLater, article];
+//   if (readLater.includes(article)){
+//     setReadLater(newReadLater);
+//   }
+//   ls.set('readLater', newReadLater);
+
+// }
+
+// const handleDeleteArticle = (article) => {
+//   const updatedList = readLater.slice(0)
+//   updatedList.splice(updatedList.indexOf(article), 1)
+//   setReadLater(updatedList)
+//   ls.set('readLater', updatedList)
+// }
+
+// const handleReadArticle = (art) => {
+//   if (this.state.readLater.find((article) => article.title === art.title)) {
+//       this.handleDeleteArticle(art)
+//   }
+//     const win = window.open(art.url, '_blank');
+//     win.focus();
+  
+// }
+
 
 return (
     <Fragment>
@@ -41,15 +74,14 @@ return (
       </h5>
       <br />
         <Row>
-       {loading || !popularStories? 
+       {!popularStories? 
         <div> loading.. </div> : (
-        popularStories.slice(0,6).map(article => 
+          popularStories.map((article) => 
         (<Col md={4} sm={8}>
-          <NYTArticle article={article} key={article.url}/>
+         <NYTArticle {...article} key={article.id}/>
         </Col>
-        ))
-        )}
-        </Row>
+        )))}
+        
         <br />
         <h5>
            Top Stories
@@ -66,14 +98,16 @@ return (
         <Row>
        {loading || !topStories? 
         <div> loading.. </div> : (
-          topStories.slice(0,9).map(article => 
+          topStories.slice(0,9).map((article) => 
         (<Col md={4} sm={8}>
-          <NYTArticle article={article} key={article.url}/>
+          <NYTArticle {...article} key={article.id}/>
         </Col>
         ))
         )}
+
         </Row>
-    </Fragment>
+        </Row>
+        </Fragment>
   );
    
 }

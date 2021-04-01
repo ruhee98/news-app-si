@@ -15,9 +15,6 @@ class HeaderComponent extends React.Component {
       <LinkContainer to="/">
       <Nav.Link>Home</Nav.Link>
       </LinkContainer>
-      <LinkContainer to="/latest">
-      <Nav.Link>Latest</Nav.Link>
-      </LinkContainer>
       <LinkContainer to="/nyt-news">
       <Nav.Link>NYT News</Nav.Link>
       </LinkContainer>
