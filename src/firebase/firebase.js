@@ -15,11 +15,11 @@ const app = firebase.initializeApp({
 // Initialize Firebase
 export const auth = app.auth();
 
-
+export const db = firebase.database();
 // const provider = new firebase.auth.GoogleAuthProvider();
 // export const signInWithGoogle = () => {
 //     auth.signInWithPopup(provider);
 //   };
-  
 
+export const postRef = (uid) => db.ref(`savedArticles/${uid}`);
 export default app;

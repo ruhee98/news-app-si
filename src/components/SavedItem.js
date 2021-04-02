@@ -1,19 +1,30 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import {useGlobalContext} from './Context';
+import {withFirebase} from '../firebase/firebase';
+import SavedList from './SavedList';
+import {Card, Row, Col, Button} from 'react-bootstrap';
+const SavedItem = ({title, byline, abstract, url}) => {
 
-
-const SavedItem = ({id, title, byline, url}) => {
     const {remove} = useGlobalContext();
     return (
         <div>
-        {/* <img src ={urlToImage} alt={title} /> */} */}
-        <h4>{title}</h4>
-        <h5>{byline}</h5>
-        {/* <h6>{savedArticle.abstract}</h6> */}
-        <h6>{url}</h6>
-        <button className='remove-btn' onClick={() => remove(id)}>
+            <Fragment>
+      <Row>
+        <Col sm={4}>
+        <Card style={{ width: '20rem' }}>
+  <Card.Body>
+    <Card.Title>{title}</Card.Title>
+    <Card.Subtitle className="mb-2 text-muted">{byline}</Card.Subtitle>
+    <Card.Text>{abstract}</Card.Text>
+    <Card.Link href={url}>Read More</Card.Link>
+    <Button className='remove-btn' onClick={() => remove()}>
             Remove
-        </button>
+    </Button>
+  </Card.Body>  
+    </Card>
+        </Col>
+      </Row>
+     </Fragment>
         </div>
     )
 }
