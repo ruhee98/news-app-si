@@ -3,7 +3,7 @@ import {useGlobalContext} from './Context';
 import {savedItem, postId} from '../firebase/firebase';
 import SavedList from './SavedList';
 import {Card, Row, Col, Button} from 'react-bootstrap';
-const SavedItem = ({title, byline, abstract, url, key, uid, img, img2, removeData}) => {
+const SavedItem = ({title, byline, abstract, url, articleID, uid, img, removeData}) => {
 
     return (
 
@@ -20,7 +20,7 @@ const SavedItem = ({title, byline, abstract, url, key, uid, img, img2, removeDat
 </Card.Title>
     <Card.Subtitle className="mb-2 text-muted">{byline}</Card.Subtitle>
     <Card.Text>{abstract}</Card.Text>
-    <Button className='remove-btn' onClick={() => removeData()}>
+    <Button className='remove-btn' onClick={() => removeData(uid, articleID)}>
             Remove
     </Button>
   </Card.Body>  

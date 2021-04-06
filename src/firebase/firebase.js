@@ -22,8 +22,8 @@ export const db = firebase.database();
 //   };
 // const uid = auth.currentUser.uid;
 export const savedItem = (uid) => db.ref(`savedArticle/${uid}`);
-export const newPostRef = (uid) => savedItem(uid).push();
-export var postId = newPostRef.key;
+// export const newPostRef = (uid) => savedItem(uid).push();
+// export var postId = newPostRef.key;
 
 // export const savedItem = () => db.ref('saved');
 

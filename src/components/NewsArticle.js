@@ -12,15 +12,17 @@ export function NewsArticle({news}){
   const toggleToSave = () => {
     setSaveLater(!saveLater)
     const uid = auth.currentUser.uid;
+    console.log(uid);
     var newPostRef = savedItem(uid).push();
     var key = newPostRef.key;
+    console.log(key);
     newPostRef.set({
       title: news.title,
       byline: news.author,
       abstract : news.content,
       url : news.url,
       img: news.urlToImage || null,
-      key: key,
+      articleID: key,
     });
     setSaveText("Saved");
   }

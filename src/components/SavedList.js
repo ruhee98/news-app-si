@@ -29,6 +29,7 @@ const SavedList = () => {
                             uid: key,
                         }))
                         setSavedArticle({articles: articleList, saveLater: true})
+                        console.log(articleList);
                     } else {
                         setSavedArticle({articles: null, saveLater: false})
                     }
@@ -43,10 +44,9 @@ const SavedList = () => {
         
     },[])
 
-    const removeData = (uid, postId) => {
-        uid = auth.currentUser.uid;
-        postId = newPostRef.key;
-        savedItem(uid).child(`${postId}`).remove().then(function() {
+    const removeData = (articleId) => {
+        const uid = auth.currentUser.uid;
+        savedItem(uid).child(articleId).remove().then(function() {
             console.log("Remove succeeded.")
           })
           .catch(function(error) {
@@ -68,7 +68,7 @@ const SavedList = () => {
                         <div>
                 {articles ? 
                 (articles.map((savedItem) => {
-                        return <SavedItem key={savedItem.uid} {...savedItem} removeData={removeData} />
+                        return <SavedItem {...savedItem} removeData={removeData} />
                 })) : (
                 <div> There are no saved items</div>
                 )
