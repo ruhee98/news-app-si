@@ -2,13 +2,6 @@ const reducer = (state, action) => {
     if (action.type === 'CLEAR_LIST'){
         return {...state, savedArticle: []}
     } 
-
-    if (action.type === 'SAVE_ARTICLE'){
-        return {
-            ...state,
-            savedArticle: action.payload,
-        }
-    }
     
     if (action.type === 'REMOVE'){
         return {...state, 

@@ -1,0 +1,70 @@
+
+body {
+    font-family: 'Work Sans', sans-serif;
+}
+
+.headingPage{
+    font-weight: 700;
+    display: block;
+    font-size: 1.5em;
+    /* margin-block-start: 0.83em; */
+    /* margin-block-end: 0.83em; */
+    /* margin-inline-start: 0px; */
+    /* margin-inline-end: 0px; */
+}
+
+.heading {
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.20;    
+    color: #000000; 
+}
+
+.image {
+    max-width: 666px;
+    position: relative;
+    border-radius: 8px;
+}
+
+.card{
+    border-radius: 3px;
+    background: #fff;
+    box-shadow: 0 6px 10px rgba(0,0,0,.08), 0 0 6px rgba(0,0,0,.05);
+    transition: .3s transform cubic-bezier(.155,1.105,.295,1.12),.3s box-shadow,.3s -webkit-transform cubic-bezier(.155,1.105,.295,1.12);
+    cursor: pointer;
+}
+
+.card:hover{
+  transform: scale(1.01);
+  /* box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06); */
+  opacity: 0.8;
+
+}
+
+
+
+a:hover {
+    color: rgb(245, 245, 245);
+    background-color: #ff002b; 
+}
+
+
+.subheading {
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 2.5;
+}
+
+.abstract{
+    font-weight: 300;
+    font-size: 15px;
+    line-height: 1.5;
+    font-family: 'Work Sans', sans-serif;
+}
+
+.readLater {
+    border: none;
+    /* background: black; */
+}
+
+

@@ -4,7 +4,7 @@ import {Link, useHistory} from 'react-router-dom';
 import {useAuth} from '../../firebase/AuthProvider';
 
 export const UpdateProfile = () => {
-const emailRef = useRef();
+  const emailRef = useRef();
   const passwordRef = useRef();
   const passwordConfirmRef = useRef();
   const [error, setError] = useState('');
@@ -14,34 +14,32 @@ const emailRef = useRef();
   const {currentUser, updatePassword, updateEmail} = useAuth();
    
   function handleSubmit(e) {
-    e.preventDefault()
-
+   e.preventDefault()
     if (passwordRef.current.value !== passwordConfirmRef.current.value){
       return setError('Passwords do not match')
     }
-    setLoading(false)
-  }
 
-  const promises = []
-  setLoading(true)
-  setError("")
-
-  if (emailRef.current.value !== currentUser.email){
+    const promises = []
+    setLoading(true)
+    setError("")
+    if (emailRef.current.value !== currentUser.email){
       promises.push(updateEmail(emailRef.current.value))
-  }
+    }
 
-  if (passwordRef.current.value){
+    if (passwordRef.current.value){
       promises.push(updatePassword(passwordRef.current.value));
-  }
+    }
 
-
-  Promise.all(promises).then(() => {
+    Promise.all(promises).then(() => {
       history.push('/')
   }).catch(() => {
       setError("failed to update account")
   }).finally(() => {
     setLoading(false)
   }) 
+
+  }
+
     
   return (
     <>

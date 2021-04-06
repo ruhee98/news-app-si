@@ -1,4 +1,4 @@
-import firebase from 'firebase/app';
+import firebase from 'firebase';
 import 'firebase/auth';
 
 const app = firebase.initializeApp({
@@ -20,6 +20,11 @@ export const db = firebase.database();
 // export const signInWithGoogle = () => {
 //     auth.signInWithPopup(provider);
 //   };
+// const uid = auth.currentUser.uid;
+export const savedItem = (uid) => db.ref(`savedArticle/${uid}`);
+export const newPostRef = (uid) => savedItem(uid).push();
+export var postId = newPostRef.key;
 
-export const postRef = (uid) => db.ref(`savedArticles/${uid}`);
+// export const savedItem = () => db.ref('saved');
+
 export default app;

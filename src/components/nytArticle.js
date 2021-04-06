@@ -1,49 +1,48 @@
-import React, {Fragment, useState, useEffect} from 'react';
+import React, {Fragment, useState} from 'react';
 import {Row, Card, Col, Button} from 'react-bootstrap';
-import {useGlobalContext} from './Context';
-import SavedList from './SavedList';
-import firebase from 'firebase';
-import {auth, db, postRef} from '../firebase/firebase';
+import './styles.css';
+import * as moment from 'moment';
+import {auth, savedItem, postId} from '../firebase/firebase';
 
-const NYTArticle = ({id, title, byline, url, multimedia, abstract}) => {
+const NYTArticle = ({title, byline, url, media, multimedia, abstract, published_date}) => {
 
   const[saveLater, setSaveLater] = useState(false);
-  
-  
-  // const {toggleToSave} = useGlobalContext();
-
 
   const toggleToSave = () => {
 
     setSaveLater(!saveLater)
     const uid = auth.currentUser.uid;
-    var savedArticles = db.ref(`saved/${uid}`);
-    var newPostRef = savedArticles.push();
+    var newPostRef = savedItem(uid).push();
+    var key = newPostRef.key;
     newPostRef.set({
       title: title,
       byline: byline,
       abstract : abstract,
       url : url,
-    });   
+      img: media || multimedia.url,
+      publishedDate : published_date,
+      key: key,
+    }); 
   }
-
 
     return(  
             <Fragment>
-                <Row>
+                <Row className='mt-3'>
                     <Col sm={4}>
-                    <Card style={{ width: '20rem' }}>
-            <Card.Body>
-                {multimedia &&
-                <Card.Img src={multimedia.url} />
+                    <Card className="card" style={{ width: '20rem' }}>
+                {media &&
+                <Card.Img className="image" variant="top" src={media[0]["media-metadata"][2].url }/>
                 }   
- <Card.Title>{title}</Card.Title>
- <Card.Subtitle className="mb-2 text-muted">
-   {byline}</Card.Subtitle>
- <Card.Text>{abstract}</Card.Text>
- <Card.Link href={url}>Read More</Card.Link>
- {'   '}
-<Button className="readLater" onClick={toggleToSave} >
+                {multimedia &&
+                <Card.Img className="image" variant="top" src={multimedia[0].url }/>
+                }
+    <Card.Body>
+ <Card.Link className="heading" href={url}>{title}</Card.Link>
+ <Card.Subtitle className="subheading">
+   {byline}  - {''}   {moment(published_date).format('LL')}</Card.Subtitle>
+ <Card.Text className="abstract">{abstract}</Card.Text>
+</Card.Body>
+<Button variant="dark" className="readLater" onClick={toggleToSave} >
   {saveLater ? (<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bookmark-check-fill" viewBox="0 0 16 16">
       <path fill-rule="evenodd" d="M2 15.5V2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.74.439L8 13.069l-5.26 2.87A.5.5 0 0 1 2 15.5zm8.854-9.646a.5.5 0 0 0-.708-.708L7.5 7.793 6.354 6.646a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z"/>
     </svg>
@@ -55,7 +54,6 @@ const NYTArticle = ({id, title, byline, url, multimedia, abstract}) => {
   )}
   Save
 </Button> 
-</Card.Body>
 </Card>
 </Col>
 </Row>

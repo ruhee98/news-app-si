@@ -6,7 +6,7 @@ export default function HeaderWithProfile() {
 
         return(
            <div>
-             <Navbar bg="dark" variant='dark' expand="lg">
+  <Navbar bg="dark" variant='dark'>
   <Navbar.Brand href="/">News Aggregator</Navbar.Brand>
   <Navbar.Toggle aria-controls="basic-navbar-nav" />
   <Navbar.Collapse id="basic-navbar-nav">
@@ -14,17 +14,14 @@ export default function HeaderWithProfile() {
       <LinkContainer to="/">
       <Nav.Link>Home</Nav.Link>
       </LinkContainer>
-      <LinkContainer to="/latest">
-      <Nav.Link>Latest</Nav.Link>
+      <LinkContainer to="/topics">
+      <Nav.Link>Categories</Nav.Link>
       </LinkContainer>
       <LinkContainer to="/nyt-news">
-      <Nav.Link>NYT News</Nav.Link>
-      </LinkContainer>
-      <LinkContainer to="/topics">
-      <Nav.Link>Topics</Nav.Link>
+      <Nav.Link>New York Times </Nav.Link>
       </LinkContainer>
       <LinkContainer to="/saved-articles">
-        <Nav.Link>Saved List</Nav.Link>
+        <Nav.Link>Read Later</Nav.Link>
         </LinkContainer>
       <LinkContainer to="/profile">
       <Nav.Link>Profile</Nav.Link>

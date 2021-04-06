@@ -2,8 +2,7 @@ import  React, {Fragment, createContext} from 'react';
 import {BrowserRouter, Route, Switch } from 'react-router-dom';
 import HomePage from '../components/HomePage';
 import {Categories} from '../components/Categories';
-import { topStories } from '../components/TopStories';
-import NYTNews from '../components/PopularStories';
+import NYTNews from '../components/NYTNews';
 import SignUp from '../components/UserLogin/SignUp';
 import Login from '../components/UserLogin/Login';
 import {AuthProvider} from '../firebase/AuthProvider'
@@ -24,7 +23,6 @@ const AppRouter = () => {
         <AuthProvider>
         <Switch>
           <PrivateRoute path="/" component={HomePage} exact={true} />
-          {/* <Route path="/latest" component={topStories} /> */}
           <Route path="/nyt-news" component={NYTNews} />
           <Route path="/topics" component={Categories} />
           <Route path="/signUp" component={SignUp} />

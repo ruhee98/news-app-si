@@ -7,7 +7,7 @@ class HeaderComponent extends React.Component {
     render(){
         return(
            <div>
-             <Navbar bg="dark" variant='dark' expand="lg">
+            <Navbar bg="dark" variant='dark' expand="lg">
   <Navbar.Brand href="/">News Aggregator</Navbar.Brand>
   <Navbar.Toggle aria-controls="basic-navbar-nav" />
   <Navbar.Collapse id="basic-navbar-nav">
@@ -15,11 +15,11 @@ class HeaderComponent extends React.Component {
       <LinkContainer to="/">
       <Nav.Link>Home</Nav.Link>
       </LinkContainer>
-      <LinkContainer to="/nyt-news">
-      <Nav.Link>NYT News</Nav.Link>
-      </LinkContainer>
       <LinkContainer to="/topics">
-      <Nav.Link>Topics</Nav.Link>
+      <Nav.Link>Categories</Nav.Link>
+      </LinkContainer>
+      <LinkContainer to="/nyt-news">
+      <Nav.Link>New York Times</Nav.Link>
       </LinkContainer>
       <Nav.Item className="ml-auto">
       <LinkContainer to="/signUp">
