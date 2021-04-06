@@ -6,6 +6,12 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 In the project directory, you can run:
 
+### Technologies Used:
+1. Firebase Realtime Database, Authentication
+2. News API: https://newsapi.org/ 
+3. and NYT API : https://developer.nytimes.com/apis
+4. React Bootstrap:  https://react-bootstrap.github.io/getting-started/introduction/
+
 ### `yarn start`
 
 Runs the app in the development mode.\
@@ -13,12 +19,6 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 The page will reload if you make edits.\
 You will also see any lint errors in the console.
-
-### Technologies Used:
-1. Firebase Realtime Database, Authentication
-2. News API: https://newsapi.org/ 
-3. and NYT API : https://developer.nytimes.com/apis
-4. React Bootstrap:  https://react-bootstrap.github.io/getting-started/introduction/
 
 ### `yarn test`
 
