@@ -18,7 +18,7 @@ const toggleToSave = () => {
     abstract : news.description,
     url : news.url,
     img: news.urlToImage || null,
-    key: key,
+    articleId: key,
   });
   setSaveText("Saved");
 }

@@ -1,10 +1,25 @@
-import React, {Fragment} from 'react';
-import {useGlobalContext} from './Context';
-import {savedItem, postId} from '../firebase/firebase';
-import SavedList from './SavedList';
+import React, {useState, Fragment} from 'react';
 import {Card, Row, Col, Button} from 'react-bootstrap';
-const SavedItem = ({title, byline, abstract, url, articleID, uid, img, removeData}) => {
+import RemoveModal from './RemoveModal';
+const SavedItem = ({title, byline, abstract, url, articleId, uid, img, removeData}) => {
 
+  const [showModal, setShowModal] = useState(false);
+  
+  const handleShow = () => setShowModal(true);
+  const handleClose = () => setShowModal(false);
+
+
+    const onConfirm = () => {
+      removeData(uid, articleId)
+      handleClose();
+    };
+
+    const handleDelete = (event) => {
+        event.preventDefault();
+        handleShow()   
+    }
+
+  
     return (
 
         <div>
@@ -20,9 +35,16 @@ const SavedItem = ({title, byline, abstract, url, articleID, uid, img, removeDat
 </Card.Title>
     <Card.Subtitle className="mb-2 text-muted">{byline}</Card.Subtitle>
     <Card.Text>{abstract}</Card.Text>
-    <Button className='remove-btn' onClick={() => removeData(uid, articleID)}>
-            Remove
+    <Button className='remove-btn' onClick={handleDelete}>
+      Remove
     </Button>
+    <RemoveModal 
+      show={showModal}
+      title={'Delete'}
+      body={'Are you sure you want to delete permanently?'}
+      onConfirm={onConfirm}
+      onDismiss={handleClose}
+    />
   </Card.Body>  
     </Card>
         </Col>

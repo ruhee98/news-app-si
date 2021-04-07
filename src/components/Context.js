@@ -1,42 +1,41 @@
 import React, {useState, useContext, useReducer, useEffect} from 'react';
+import {auth, savedItem} from '../firebase/firebase';
 import reducer from './reducer';
-import firebase from 'firebase';
-import SavedList from './SavedList';
 
 const AppContext = React.createContext();
 
-const initialState = {
-    loading: false,
-}
+const AppProvider = ({children}) => {
 
-const AppProvider = ({children, title, byline, abstract, url}) => {
+    // const [state, dispatch] = useReducer(reducer, initialState);
 
-    const [state, dispatch] = useReducer(reducer, initialState);
-    
-    const clearList = () => {
-        dispatch({type : 'CLEAR_LIST'})
+    const [saveLater, setSaveLater] = useState(false);
+    const toggleSaveLater = () => {
+        setSaveLater(!saveLater)
     }
 
-    const remove = (id) => {
-        dispatch ({type: 'REMOVE', payload: id})
+
+    const removeData = (articleId) => {
+        var uid = auth.currentUser.uid;
+        savedItem(uid).child(articleId).remove().then(function() {
+            console.log("Remove succeeded.")
+          })
+          .catch(function(error) {
+            console.log("Remove failed: " + error.message)
+    });
     }
    
     return (
         <AppContext.Provider
         value={{
-            ...state,
-            clearList,
-            remove,
-            dispatch,            
+            saveLater,
+            toggleSaveLater,
+            removeData,
         }}
         >
             {children}
         </AppContext.Provider>
     )
-
-
-}
-
+    }
 
 
 export const useGlobalContext = () => {

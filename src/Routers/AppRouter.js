@@ -11,6 +11,7 @@ import { ProfilePage } from '../components/UserLogin/ProfilePage';
 import { ForgotPasswordPage} from '../components/UserLogin/ForgotPasswordPage';
 import { UpdateProfile} from '../components/UserLogin/UpdateProfile';
 import SavedList from '../components/SavedList';
+import { AppProvider } from '../components/Context';
 
 
 const AppRouter = () => {
@@ -29,11 +30,13 @@ const AppRouter = () => {
           <Route path="/login" component={Login} />
           <Route path="/passwordReset" component={ForgotPasswordPage} />
           <PrivateRoute path="/" component={HomePage} exact={true} />
+          <AppProvider>
           <PrivateRoute path="/nyt-news" component={NYTNews} />
           <PrivateRoute path="/topics" component={Categories} />
           <PrivateRoute path="/profile" component={ProfilePage} />
           <PrivateRoute path="/update-profile" component={UpdateProfile} />
           <PrivateRoute path="/saved-articles" component={SavedList} />
+          </AppProvider>
         </Switch>
         </AuthProvider>
         

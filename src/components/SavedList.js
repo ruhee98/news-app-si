@@ -19,28 +19,25 @@ const SavedList = () => {
     useEffect(() => {
         auth.onAuthStateChanged(function(uid){
             if(uid){
-                uid = auth.currentUser.uid;
-                // var savedArticles = db.ref(`saved/${uid}`);
-                savedItem(uid).orderByChild('title').on("value",  (snap) => {
+                savedItem(uid).once("value", (snap) => {
                     const articleObject = snap.val();
-                    if (articleObject) {
-                        const articleList = Object.keys(articleObject).map(key => ({
-                            ...articleObject[key],
-                            uid: key,
-                        }))
-                        setSavedArticle({articles: articleList, saveLater: true})
-                        console.log(articleList);
-                    } else {
-                        setSavedArticle({articles: null, saveLater: false})
-                    }
+                        if (articleObject) {
+                const articleList = Object.keys(articleObject).map(articleId => ({
+                    ...articleObject[articleId],
+                    uid: articleId,
+                }))
+                            setSavedArticle({articles: articleList, saveLater: true})
+                            console.log(articleList);
+                        } else {
+                            setSavedArticle({articles: null, saveLater: false})
+                        }
                 })
-                 return () =>
-                savedItem(uid).off();
+                //  return () =>
+                // savedItem(uid).off();
             } else {
                 console.log('No user is signed in');
             }
         })
-        
         
     },[])
 

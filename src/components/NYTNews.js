@@ -13,15 +13,14 @@ const [popularStories, setPopularStories] = useState([]);
 
 const [loading, setLoading] = useState(true);
 
-const {dispatch} = useGlobalContext();
 const {currentUser} = useAuth();
 
 const getPopularStories = async () => {
     let url = `https://api.nytimes.com/svc/mostpopular/v2/viewed/1.json?api-key=${process.env.REACT_APP_API_KEY_NYT_NEWS}`;
     const response = await fetch(url);
-    dispatch({type: 'LOADING'})
     const popularStories = await response.json();
     console.log(popularStories);
+    setLoading(false);
     setPopularStories(popularStories.results);
 }
 

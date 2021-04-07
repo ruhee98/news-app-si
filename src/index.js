@@ -9,12 +9,10 @@ import {BrowserRouter} from 'react-router-dom';
 import { AppProvider } from './components/Context';
 
 
-
-
 ReactDOM.render(
-  <AppProvider>
+  // <AppProvider>
      <AppRouter />
-  </AppProvider>
+  // {/* </AppProvider> */}
 ,
   document.getElementById('root')
 );

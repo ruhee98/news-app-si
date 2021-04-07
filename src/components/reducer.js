@@ -1,22 +1,22 @@
-const reducer = (state, action) => {
-    if (action.type === 'CLEAR_LIST'){
-        return {...state, savedArticle: []}
-    } 
+// const reducer = (state, action) => {
+//     if (action.type === 'CLEAR_LIST'){
+//         return {...state, savedArticle: []}
+//     } 
     
-    if (action.type === 'REMOVE'){
-        return {...state, 
-            savedArticle: state.savedArticle.filter((saved) => 
-            saved.id !== action.payload),
-            }
-    } 
-    if (action.type === 'LOADING'){
-        return {...state, loading: true}
-    }
+//     if (action.type === 'REMOVE'){
+//         return {...state, 
+//             savedArticle: state.savedArticle.filter((saved) => 
+//             saved.id !== action.payload),
+//             }
+//     } 
+//     if (action.type === 'LOADING'){
+//         return {...state, loading: true}
+//     }
 
-    if (action.type === 'DISPLAY_ITEMS'){
-        return {...state, savedArticle: action.payload, loading: false}
-    }
-    return state
-}
+//     if (action.type === 'DISPLAY_ITEMS'){
+//         return {...state, savedArticle: action.payload, loading: false}
+//     }
+//     return state
+// }
 
-export default reducer;
+// export default reducer;

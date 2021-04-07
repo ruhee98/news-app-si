@@ -19,9 +19,9 @@ const NYTArticle = ({title, byline, url, media, multimedia, abstract, published_
       byline: byline,
       abstract : abstract,
       url : url,
-      img: media || multimedia.url,
+      img: null,
       publishedDate : published_date,
-      key: key,
+      articleId: key,
     }); 
   }
 
