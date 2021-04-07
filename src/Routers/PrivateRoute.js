@@ -3,7 +3,7 @@ import {useAuth} from '../firebase/AuthProvider'
 import {Route, Redirect} from 'react-router-dom';
 
 
-export const PrivateRoute = ({component: HeaderWithProfile, ...rest}) => {
+export const PrivateRoute = ({component: HeaderWithProfile, HeaderComponent, ...rest}) => {
     const {currentUser} = useAuth();
 
     return (
@@ -16,7 +16,6 @@ export const PrivateRoute = ({component: HeaderWithProfile, ...rest}) => {
                 <HeaderWithProfile {...routeProps} />
 
             ) : (
-                // <HeaderComponent {...routeProps} />
                 <Redirect to={"/"} />
             )
             }

@@ -34,7 +34,7 @@ export function NewsArticle({news}){
         <Card style={{ width: '20rem'}}>
       <Card.Img className="image" variant="top" src={news.urlToImage}/> 
   <Card.Body>
-    <Card.Title className="heading">
+    <Card.Title variant="link">
     <Card.Link className="heading" href={news.url}>{news.title}</Card.Link>
       </Card.Title>
     <Card.Subtitle className="subheading">{news.source.name} • {moment(news.publishedAt).format('LL')}</Card.Subtitle>

@@ -22,12 +22,15 @@ const AppRouter = () => {
         <br />
         <AuthProvider>
         <Switch>
-          <PrivateRoute path="/" component={HomePage} exact={true} />
+          <Route path="/" component={HomePage} exact={true} />
           <Route path="/nyt-news" component={NYTNews} />
           <Route path="/topics" component={Categories} />
           <Route path="/signUp" component={SignUp} />
           <Route path="/login" component={Login} />
-          <PrivateRoute path="/passwordReset" component={ForgotPasswordPage} />
+          <Route path="/passwordReset" component={ForgotPasswordPage} />
+          <PrivateRoute path="/" component={HomePage} exact={true} />
+          <PrivateRoute path="/nyt-news" component={NYTNews} />
+          <PrivateRoute path="/topics" component={Categories} />
           <PrivateRoute path="/profile" component={ProfilePage} />
           <PrivateRoute path="/update-profile" component={UpdateProfile} />
           <PrivateRoute path="/saved-articles" component={SavedList} />

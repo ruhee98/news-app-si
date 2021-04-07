@@ -4,7 +4,6 @@ import {useAuth} from '../../firebase/AuthProvider';
 import {Link, useHistory } from 'react-router-dom';
 import HeaderWithProfile from '../../Header/HeaderWithProfile'
 
-
 export const ProfilePage = () => {
     const[error, setError] = useState('');
     const {currentUser, logout} = useAuth();
@@ -14,7 +13,7 @@ export const ProfilePage = () => {
         setError('')
         try {
             await logout()
-            history.push("/login");
+            history.push("/");
         } catch {
             setError("Failed to log out")
         }

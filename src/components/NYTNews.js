@@ -3,6 +3,8 @@ import {Row, Col, Button, Spinner} from 'react-bootstrap';
 import NYTArticle  from './nytArticle';
 import HeaderWithProfile from '../Header/HeaderWithProfile'
 import {useGlobalContext} from './Context';
+import HeaderComponent from '../Header/header';
+import {useAuth} from '../firebase/AuthProvider';
 
 const NYTNews = () => {
 
@@ -12,6 +14,7 @@ const [popularStories, setPopularStories] = useState([]);
 const [loading, setLoading] = useState(true);
 
 const {dispatch} = useGlobalContext();
+const {currentUser} = useAuth();
 
 const getPopularStories = async () => {
     let url = `https://api.nytimes.com/svc/mostpopular/v2/viewed/1.json?api-key=${process.env.REACT_APP_API_KEY_NYT_NEWS}`;
@@ -38,9 +41,11 @@ const getTopStories = async (section) => {
      
 return (
     <Fragment>
-        <HeaderWithProfile />
-        {/* Saved List */}
-        {/* <SavedItem key={article.id} /> */}
+        {currentUser ?
+            <HeaderWithProfile />
+            :
+            <HeaderComponent />
+            }
        <h5 className="headingPage">
          Most Popular
       </h5>

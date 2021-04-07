@@ -2,6 +2,7 @@ import React, {useRef, useState} from 'react';
 import {Container, Card, Form, Alert, Button} from 'react-bootstrap';
 import {Link, useHistory} from 'react-router-dom';
 import {useAuth} from '../../firebase/AuthProvider'
+import HeaderComponent from '../../Header/header';
 
 const SignUp = () => {
   const emailRef = useRef();
@@ -35,10 +36,11 @@ const SignUp = () => {
     
   return (
     <div>
+      <HeaderComponent />
       <Container className="d-flex align-items-center justify-content-center"
-      style={{minHeight: "100vh"}}>
+      style={{minHeight: "50vh"}}>
         <div className="w-100"
-        style={{maxWidth: "400px"}}>
+        style={{maxWidth: "700px"}}>
 <Card>
         <Card.Body>
           <h3 className="text-center mb-4">Sign Up</h3>
@@ -65,9 +67,7 @@ const SignUp = () => {
     type="password" 
     name="password"
     placeholder="Password"
-    // onChange={handleChange} 
     ref={passwordRef}
-    // value={inputs.password}
     required
     />
   </Form.Group>

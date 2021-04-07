@@ -3,9 +3,13 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import {NewsArticle} from '../components/NewsArticle'
 import {Row, Col, Spinner} from 'react-bootstrap';
 import HeaderWithProfile from '../Header/HeaderWithProfile';
+import HeaderComponent from '../Header/header';
+import {useAuth} from '../firebase/AuthProvider';
+
 const HomePage = () => {
   const [result, setResult] = useState([]);
   const [loading, setLoading] = useState(true);
+  const {currentUser} = useAuth();
 
   useEffect(() => {
     getLatestNews()
@@ -23,8 +27,11 @@ const HomePage = () => {
 
   return (
     <Fragment>
-      <HeaderWithProfile />
-      <br />
+      {currentUser ?
+            <HeaderWithProfile />
+            :
+            <HeaderComponent />
+      }      
       <h4 className="headingPage">
         Latest News
       </h4>

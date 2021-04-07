@@ -2,6 +2,7 @@ import React, {useContext, useRef, useState} from 'react';
 import {Container, Card, Form, Alert, Button} from 'react-bootstrap';
 import {Link, useHistory} from "react-router-dom";
 import {useAuth} from '../../firebase/AuthProvider'
+import HeaderComponent from '../../Header/header';
 
 
 const LoginForm =  () => {
@@ -32,11 +33,17 @@ const LoginForm =  () => {
   } 
 return (
 <div>
+<HeaderComponent />
+<Container className="d-flex align-items-center justify-content-center"
+      style={{minHeight: "50vh"}}>
+        <div className="w-100"
+        style={{maxWidth: "700px"}}>
 <div className="mt-8">
         <Card.Body>
-          <h3 className="text-center mb-4">Sign In</h3>
+          <h3 className="text-center mb-4">Log In</h3>
         {currentUser && currentUser.email}
-        {error && <Alert variant="danger">{error}</Alert>}
+        {error && 
+        <Alert variant="danger">{error}</Alert>}
         </Card.Body>
         <Form onSubmit={handleSubmit}>
           <Form.Label className="block">
@@ -76,11 +83,13 @@ return (
             Sign up here
           </Link>{" "}
           <br />{" "}
-          <Link to = "passwordReset" className="text-blue-500 hover:text-blue-600">
+          <Link to = "/passwordReset" className="text-blue-500 hover:text-blue-600">
             Forgot Password?
           </Link>
         </p>
       </div>
+      </div>
+      </Container>
     </div>
     )
 }

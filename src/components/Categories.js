@@ -2,11 +2,14 @@ import React, {Fragment, useState, useEffect} from 'react';
 import {NewsByCategory} from './NewsByCategory';
 import {Button, Row, Col, Spinner} from 'react-bootstrap';
 import HeaderWithProfile from '../Header/HeaderWithProfile'
+import HeaderComponent from '../Header/header';
+import {useAuth} from '../firebase/AuthProvider';
 
 
 export const Categories = () => {
     const [loading, setLoading] = useState(true);
     const [categories, setNewsByCategory] = useState([]);
+    const {currentUser} = useAuth();
 
 
     useEffect(() => {
@@ -24,7 +27,11 @@ export const Categories = () => {
 
     return (
         <Fragment>
+            {currentUser ?
             <HeaderWithProfile />
+            :
+            <HeaderComponent />
+            }
             <Row className="mt-1">
             <h5 className="headingPage">News by Sources </h5>
             </Row>
@@ -34,7 +41,6 @@ export const Categories = () => {
                 Technology:
                 </h5>
             <Col className="ml-2">
-            <Button onClick={() => {getNewsByCategory('techcrunch.com')}}variant="outline-secondary">Tech crunch</Button>{' '}
             <Button onClick={() => {getNewsByCategory('wired.com')}}variant="outline-secondary">Wired</Button>{' '}
             <Button onClick={() => {getNewsByCategory('thenextweb.com')}}variant="outline-secondary">The Next Web</Button>{' '}
             <Button onClick={() => {getNewsByCategory('techradar.com')}}variant="outline-secondary">Tech Radar</Button>{' '}

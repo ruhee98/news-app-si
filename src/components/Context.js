@@ -1,5 +1,4 @@
 import React, {useState, useContext, useReducer, useEffect} from 'react';
-import {data} from '../apis/apis';
 import reducer from './reducer';
 import firebase from 'firebase';
 import SavedList from './SavedList';
