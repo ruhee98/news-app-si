@@ -5,29 +5,34 @@ import './styles.css';
 import * as moment from 'moment';
 import {AppProvider, useGlobalContext} from './Context';
 import ToggleSaveButton from './toggleSave';
-
 import Save from "./Save";
+import {useAuth} from '../firebase/AuthProvider';
 
 export function NewsArticle({news}){
 
   const [saveText, setSaveText] = useState("Save");
   const[saveLater, setSaveLater] = useState(false);
+  const {currentUser} = useAuth();
 
   const toggleToSave = () => {
     setSaveLater(!saveLater);
-    const uid = auth.currentUser.uid;
-    console.log(uid);
-    var newPostRef = savedItem(uid).push();
-    var key = newPostRef.key;
-    newPostRef.set({
-      title: news.title,
-      byline: news.source.name,
-      abstract : news.content,
-      url : news.url,
-      img: news.urlToImage || null,
-      articleId: key,
-    });
-    setSaveText("Saved");
+    if (currentUser){
+      const uid = auth.currentUser.uid;
+      var newPostRef = savedItem(uid).push();
+      var key = newPostRef.key;
+      newPostRef.set({
+        title: news.title,
+        byline: news.source.name,
+        abstract : news.content,
+        url : news.url,
+        img: news.urlToImage || null,
+        articleId: key,
+      });
+      setSaveText("Saved");
+    } else {
+      alert("Please sign up for saving bookmarks")
+    }
+    
   }
     return(  
     <Fragment>

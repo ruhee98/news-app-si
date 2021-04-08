@@ -16,15 +16,13 @@ const app = firebase.initializeApp({
 export const auth = app.auth();
 
 export const db = firebase.database();
-// const provider = new firebase.auth.GoogleAuthProvider();
-// export const signInWithGoogle = () => {
-//     auth.signInWithPopup(provider);
-//   };
-// const uid = auth.currentUser.uid;
-export const savedItem = (uid) => db.ref(`savedArticle/${uid}`);
+
+
+// export const savedItem = (uid) => db.ref('savedArticle');
+export const savedItem = (uid) => db.ref(`savedArticle/${uid}/`);
+
 // export const newPostRef = (uid) => savedItem(uid).push();
 // export var postId = newPostRef.key;
 
-// export const savedItem = () => db.ref('saved');
 
 export default app;

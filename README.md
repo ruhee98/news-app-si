@@ -1,18 +1,40 @@
 ## News Aggregator App
+New Aggregator retrieved news from various news sources with real-time updates, and has a bookmarking tool for users to save articles' information.
+
+### Usage and Features
+1. Live feed of diverse news content from News API and NYTimes content to derive article details, including full story link, title, section, and abstract.
+2. Allows users to sign up to bookmark articles that is added to the Read Later list that captures and renders information for each saved item.
+3. Can update "Saved Articles" lists as viewers access saved articles
+4. Prevents article duplication in "Saved Articles"
 
 ### Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+### Technologies Used:
+1. React JS 
+2. Firebase Realtime Database, Authentication
+3. News API: https://newsapi.org/ 
+4. and NYT API : https://developer.nytimes.com/apis
+5. React Bootstrap:  https://react-bootstrap.github.io/getting-started/introduction/
+
+### Packages Used:
+1. react-router-bootstrap
+2. moment - to change format of time
+3. firebase
+4. axios
+5. Google Fonts
+
+### Citations:
+1. Firebase Realtime Database Tutorial: https://www.robinwieruch.de/react-firebase-realtime-database
+2. Firebase Authentication : 
+3. Using Async Await APIs
+4. UseContext Hooks
+5. CSS Styling: https://stackoverflow.com/questions/49141874/bootstrap-4-card-panel-with-image-left-of-header-and-title
+
 ### Available Scripts
 
 In the project directory, you can run:
-
-### Technologies Used:
-1. Firebase Realtime Database, Authentication
-2. News API: https://newsapi.org/ 
-3. and NYT API : https://developer.nytimes.com/apis
-4. React Bootstrap:  https://react-bootstrap.github.io/getting-started/introduction/
 
 ### `yarn start`
 

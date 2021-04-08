@@ -17,9 +17,9 @@ const SavedList = () => {
     const [savedArticle, setSavedArticle] = useState(initialState)
 
     useEffect(() => {
-        auth.onAuthStateChanged(function(uid){
-            if(uid){
-                savedItem(uid).once("value", (snap) => {
+            auth.onAuthStateChanged(function(uid){ 
+                uid = auth.currentUser.uid;
+                savedItem(uid).on("value", (snap) => {
                     const articleObject = snap.val();
                         if (articleObject) {
                 const articleList = Object.keys(articleObject).map(articleId => ({
@@ -32,11 +32,8 @@ const SavedList = () => {
                             setSavedArticle({articles: null, saveLater: false})
                         }
                 })
-                //  return () =>
-                // savedItem(uid).off();
-            } else {
-                console.log('No user is signed in');
-            }
+                 return () =>
+                savedItem(uid).off();
         })
         
     },[])
@@ -51,33 +48,38 @@ const SavedList = () => {
           });
     };
 
+    const clearList = () => {
+        const uid = auth.currentUser.uid;
+        savedItem(uid).remove().then(function() {
+            console.log("Cleared List!")
+        }).catch(function(error){
+            console.log("Cleared" + error.message)
+        });
+    }
+
     const {articles} = savedArticle; 
 
     return (
             <div>
             <HeaderWithProfile />
-            <header>
-                <h3>Your Saved List</h3>
-            </header>
-            <AuthContext.Consumer>
-                {currentUser => (
-                    <div>
-                        <div>
-                {articles ? 
-                (articles.map((savedItem) => {
-                        return <SavedItem {...savedItem} removeData={removeData} />
-                })) : (
+            <h4 className="header">Your Saved List</h4>
+            <Button className='btn clear-btn' onClick={() => clearList()}>
+                Clear Reading List
+            </Button>
+            <Row>
+            {articles ? 
+                
+                (articles.map((savedItem) => 
+                (<Col md={4} sm={8}>
+                <SavedItem {...savedItem} removeData={removeData} />
+                </Col>                    
+                ))) : (
                 <div> There are no saved items</div>
                 )
-               }
-                        </div>
-            {/* <button className='btn clear-btn' onClick={clearList}>
-                Clear Reading List
-            </button> */}
-                    </div>
-                )}
-          
-            </AuthContext.Consumer>
+                }   
+            </Row>
+                       
+                
             </div>
         )
 

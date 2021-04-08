@@ -13,7 +13,7 @@ export const ProfilePage = () => {
         setError('')
         try {
             await logout()
-            history.push("/");
+            history.push("/login");
         } catch {
             setError("Failed to log out")
         }

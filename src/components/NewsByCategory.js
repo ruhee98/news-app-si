@@ -1,26 +1,33 @@
 import React, {Fragment, useState} from 'react';
 import {Card, Button} from 'react-bootstrap';
 import {auth, savedItem} from '../firebase/firebase';
+import {useAuth} from '../firebase/AuthProvider';
 
 export const NewsByCategory = ({news}) => {
 
-
   const[saveLater, setSaveLater] = useState(false);
   const [saveText, setSaveText] = useState("Save");
+  const {currentUser} = useAuth();
+
 
 const toggleToSave = () => {
-  setSaveLater(!saveLater)
-  const uid = auth.currentUser.uid;
-  var newPostRef = savedItem(uid).push();
-  var key = newPostRef.key;
-  newPostRef.set({
-    title: news.title,
-    abstract : news.description,
-    url : news.url,
-    img: news.urlToImage || null,
-    articleId: key,
-  });
-  setSaveText("Saved");
+  if(currentUser){
+    setSaveLater(!saveLater)
+    const uid = auth.currentUser.uid;
+    var newPostRef = savedItem(uid).push();
+    var key = newPostRef.key;
+    newPostRef.set({
+      title: news.title,
+      abstract : news.description,
+      url : news.url,
+      img: news.urlToImage || null,
+      articleId: key,
+    });
+    setSaveText("Saved");
+  } else {
+    alert("Please sign up or login to your account for saving articles")
+  }
+  
 }
     return (
         <Card>

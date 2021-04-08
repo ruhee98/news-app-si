@@ -1,6 +1,7 @@
 import React, {Fragment, useState, useEffect} from 'react';
 import {Row, Col, Button, Spinner} from 'react-bootstrap';
 import NYTArticle  from './nytArticle';
+import NYTCard from './NYTCard';
 import HeaderWithProfile from '../Header/HeaderWithProfile'
 import {useGlobalContext} from './Context';
 import HeaderComponent from '../Header/header';
@@ -56,7 +57,7 @@ return (
        </Spinner> : (
           popularStories.slice(0,6).map((article) => 
         (<Col md={4} sm={8}>
-         <NYTArticle {...article} key={article.id}/>
+         <NYTCard {...article} key={article.id}/>
         </Col>
         )))}
         </Row>
@@ -72,7 +73,6 @@ return (
         <Button onClick={() => {getTopStories('technology')}}variant="outline-secondary">Technology</Button>{' '}
         <Button onClick={() => {getTopStories('arts')}}variant="outline-warning">Arts</Button>{' '}
         <Button onClick={() => {getTopStories('world')}}variant="outline-danger">World</Button>{' '}
-        <Row>
       
        {loading || !topStories ?
 <Spinner animation="border" variant="success">
@@ -80,13 +80,11 @@ return (
 </Spinner>
        :
       
-       topStories.slice(0,9).map((article) => 
-        (<Col md={4} sm={8}>
+       topStories.slice(0,12).map((article) => 
+        (
           <NYTArticle {...article} key={article.id}/>
-        </Col>
         ))
       }
-        </Row>
         </Fragment>
   );
    

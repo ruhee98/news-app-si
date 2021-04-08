@@ -10,7 +10,7 @@ const SavedItem = ({title, byline, abstract, url, articleId, uid, img, removeDat
 
 
     const onConfirm = () => {
-      removeData(uid, articleId)
+      removeData(articleId)
       handleClose();
     };
 
