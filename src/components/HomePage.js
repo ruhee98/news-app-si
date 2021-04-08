@@ -31,18 +31,19 @@ const HomePage = () => {
             <HeaderWithProfile />
             :
             <HeaderComponent />
-      }      
+      }
+      <br />
       <h4 className="headingPage">
         Latest News
-      </h4>
-      <br />
+      </h4>  
+     
         <Row>
        {loading || !result? 
          <Spinner animation="border" variant="primary">
          <span className="sr-only">Loading...</span>
          </Spinner> 
          : 
-        result.slice(0, 9).map(news => 
+        result.slice(0,15).map(news => 
         (<Col md={4}>
         <NewsArticle news={news} key={news.url}/>
         </Col>

@@ -27,11 +27,21 @@ const getPopularStories = async () => {
 
 useEffect(() => {
     getPopularStories()
+    getAllTopStories()
     getTopStories()
 },[])
 
 const getTopStories = async (section) => {
   let url = `https://api.nytimes.com/svc/topstories/v2/${section}.json?api-key=${process.env.REACT_APP_API_KEY_NYT_NEWS}`;
+  const response = await fetch(url);
+  const data = await response.json();
+  console.log(data);
+  setLoading(false);
+  setTopStories(data.results);
+}
+
+const getAllTopStories = async () => {
+  let url = `https://api.nytimes.com/svc/topstories/v2/home.json?api-key=${process.env.REACT_APP_API_KEY_NYT_NEWS}`;
   const response = await fetch(url);
   const data = await response.json();
   console.log(data);
@@ -46,10 +56,10 @@ return (
             :
             <HeaderComponent />
             }
+        <br />
        <h5 className="headingPage">
          Most Popular
       </h5>
-      <br />
         <Row>
        {!popularStories? 
         <Spinner animation="border" variant="success" >
@@ -66,21 +76,27 @@ return (
         <h5 className="headingPage">
            Top Stories
         </h5>
-        <br />
-        <Button onClick={() => {getTopStories('home')}} variant="outline-primary">All</Button>{' '}
-        <Button onClick={() => {getTopStories('politics')}} variant="outline-primary" >Politics</Button>{' '}
-        <Button onClick={() => {getTopStories('business')}}variant="outline-secondary">Business</Button>{' '}
-        <Button onClick={() => {getTopStories('technology')}}variant="outline-secondary">Technology</Button>{' '}
-        <Button onClick={() => {getTopStories('arts')}}variant="outline-warning">Arts</Button>{' '}
-        <Button onClick={() => {getTopStories('world')}}variant="outline-danger">World</Button>{' '}
-      
+        
+        <Row>
+        <h7 className="headingPage">
+           All
+        </h7>
+        <Col> 
+        <Button onClick={() => {getTopStories('politics')}}  variant="outline-secondary mr-3">Politics</Button>
+        <Button onClick={() => {getTopStories('business')}} variant="outline-secondary mr-3">Business</Button>
+        <Button onClick={() => {getTopStories('technology')}}variant="outline-secondary mr-3">Technology</Button>
+        <Button onClick={() => {getTopStories('arts')}}variant="outline-warning mr-3">Arts</Button>
+        <Button onClick={() => {getTopStories('world')}}variant="outline-danger mr-3">World</Button>{' '}
+        </Col>
+        </Row>
+       
        {loading || !topStories ?
 <Spinner animation="border" variant="success">
 <span className="sr-only">Loading...</span>
 </Spinner>
        :
       
-       topStories.slice(0,12).map((article) => 
+       topStories.slice(0,21).map((article) => 
         (
           <NYTArticle {...article} key={article.id}/>
         ))

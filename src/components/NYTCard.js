@@ -37,11 +37,13 @@ const NYTCard = ({title, byline, url, media, multimedia, abstract, published_dat
                 <Row className='mt-3'>
                     <Col sm={4}>
                     <Card className="card" style={{ width: '21rem' }}>
-                {/* {media ?  */}
-                {/* // <Card.Img className="image" variant="top" src={media[0]['media-metadata'][0].url }/> */}
-                {/* : */}
-                {/* <Card.Img className="image" variant="top" src={'pngkey.com/png/detail/79-790806_new-york-times-logo-new-york-times-png.png'}/> */}
-                {/* }    */}
+                 
+                <Card.Img className="image" variant="top" 
+                 src={media?.[0]?.['media-metadata'][2]?.url?
+                  `https://nyt.com/${media[0]['media-metadata'][2].url}` : 
+                  'https://upload.wikimedia.org/wikipedia/commons/4/40/New_York_Times_logo_variation.jpg'
+                  } alt="news-img"/> 
+                
     <Card.Body>
  <Card.Link className="heading" href={url}>{title}</Card.Link>
  <Card.Subtitle className="subheading">

@@ -45,7 +45,7 @@ export function NewsArticle({news}){
     <Card.Link className="heading" href={news.url}>{news.title}</Card.Link>
       </Card.Title>
     <Card.Subtitle className="subheading">{news.source.name} • {moment(news.publishedAt).format('LL')}</Card.Subtitle>
-    {/* <Card.Text className="subheading">{news.content}</Card.Text> */}
+    <Card.Text className="abstract">{news.content}</Card.Text>
     {/* <Card.Link href={news.url}>Read More</Card.Link> */}
     </Card.Body>
     {/* <AppProvider> */}
@@ -67,15 +67,6 @@ export function NewsArticle({news}){
   )}
   Save
 </Button> 
-    {/* {saveText} */}
-
-  
-  
- 
-  {/* <Card.Footer>
-      {/* <small className="text-muted">Last updated 3 mins ago</small>
-      <i class="bi bi-bookmark"></i> */}
-    {/* </Card.Footer> */} 
     </Card>
         </Col>
       </Row>
