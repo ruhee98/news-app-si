@@ -54,10 +54,15 @@ const SavedList = ({article}) => {
     return (
             <div>
             <HeaderWithProfile />
-            <h4 className="header">Your Saved List</h4>
-            <Button className='btn clear-btn' onClick={() => clearList()}>
-                Clear Reading List
+            <br />
+            <Row className="mt-2">
+            <h4 className="headingPage">Your Saved List</h4>
+            <Col className="d-flex flex-row-reverse">
+            <Button className='btn clear-btn' variant="dark" onClick={() => clearList()}>
+                Clear your List
             </Button>
+            </Col>
+            </Row>
             <Row>
             {savedList ?
                 (savedList.map((article) => 
