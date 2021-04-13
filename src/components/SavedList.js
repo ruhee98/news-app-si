@@ -56,7 +56,7 @@ const SavedList = ({article}) => {
             <HeaderWithProfile />
             <br />
             <Row className="mt-2">
-            <h4 className="headingPage">Your Saved List</h4>
+            <h4 className="headingPage">Your Saved Articles</h4>
             <Col className="d-flex flex-row-reverse">
             <Button className='btn clear-btn' variant="dark" onClick={() => clearList()}>
                 Clear your List
@@ -71,7 +71,7 @@ const SavedList = ({article}) => {
                 </Col>                    
                 ))) 
                 : (
-                <h4 className="header"> There are no saved items</h4>
+                <h7 className="categories-heading"> There are no articles to read on your list.</h7>
                 )
             } 
             </Row>
