@@ -33,11 +33,11 @@ export const Categories = () => {
             <HeaderComponent />
             }
             <Row className="mt-3">
-            <h4>News by Sources </h4>
+            <h4 className="headingPage">News by Sources </h4>
             </Row>
 
             <Row className='mt-3'>
-            <h5>General: </h5>
+            <h5 className="categories-heading">General: </h5>
             <Col className='ml-2'>
             <Button className="button" onClick={() => {getNewsByCategory('bbc.com')}}variant="outline-danger">BBC</Button>{' '}
             <Button onClick={() => {getNewsByCategory('cnn.com')}}variant="outline-danger">CNN</Button>{' '}
@@ -49,7 +49,7 @@ export const Categories = () => {
                 </Col>
             </Row>
             <Row className="mt-2">
-                <h5>
+                <h5 className="categories-heading" >
                 Technology:
                 </h5>
             <Col className="ml-2">
@@ -60,7 +60,7 @@ export const Categories = () => {
             </Col>
             </Row>
             <Row className="mt-3">
-            <h5>Business: </h5>
+            <h5 className="categories-heading">Business: </h5>
             <Col className="ml-2">
             <Button onClick={() => {getNewsByCategory('wsj.com')}}variant="outline-success">WSJ</Button>{' '}
             <Button onClick={() => {getNewsByCategory('bloomberg.com')}}variant="outline-success">Bloomberg</Button>{' '}
@@ -69,7 +69,7 @@ export const Categories = () => {
             </Row>
             
             <Row className='mt-3'>
-            <h5>Entertainment:  </h5>
+            <h5 className="categories-heading">Entertainment:  </h5>
                 <Col className='ml-2'>
             <Button onClick={() => {getNewsByCategory('pitchfork.com')}}variant="outline-warning">Pitchfork</Button>{' '}
             <Button onClick={() => {getNewsByCategory('polygon.com')}}variant="outline-warning">Polygon</Button>{' '}

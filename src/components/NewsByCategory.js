@@ -2,15 +2,13 @@ import React, {Fragment, useState, useContext} from 'react';
 import {Card, Button} from 'react-bootstrap';
 import {auth, savedItem} from '../firebase/firebase';
 import {useAuth} from '../firebase/AuthProvider';
-import { GlobalProvider, GlobalContext } from "./Context";
+import * as moment from 'moment';
 
 export const NewsByCategory = ({news}) => {
 
   const[saveLater, setSaveLater] = useState(false);
-  const [saveText, setSaveText] = useState("Save");
   const {currentUser} = useAuth();
 
-  // const {saveItem, savedList} = useContext(GlobalContext);
 
 const toggleToSave = () => {
   setSaveLater(!saveLater)
@@ -26,7 +24,6 @@ const toggleToSave = () => {
       img: news.urlToImage || null,
       articleId: key,
     });
-    setSaveText("Saved");
   } else {
     alert("Please sign up or login to your account for saving articles")
   }
@@ -40,7 +37,9 @@ const toggleToSave = () => {
         <Card.Title className="heading">
         <Card.Link className="heading" href={news.url}>{news.title}</Card.Link>
         </Card.Title>
-    <Card.Text>
+        <Card.Subtitle className="subheading">
+          {news.source.name} • {moment(news.published_date).format('LL')}</Card.Subtitle>
+    <Card.Text className="abstract">
       {news.description}
     </Card.Text>
   </Card.Body>
