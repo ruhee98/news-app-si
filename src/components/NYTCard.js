@@ -1,21 +1,14 @@
-import React, {Fragment, useState, useContext} from 'react';
+import React, {Fragment, useState} from 'react';
 import {Row, Card, Col, Button} from 'react-bootstrap';
 import './styles.css';
 import * as moment from 'moment';
-import {auth, savedItem, postId} from '../firebase/firebase';
+import {auth, savedItem} from '../firebase/firebase';
 import {useAuth} from '../firebase/AuthProvider';
-import { GlobalProvider, GlobalContext } from "./Context";
-import Save from "./Save";
 
 const NYTCard = ({type, article}) => {
 
   const[saveLater, setSaveLater] = useState(false);
   const {currentUser} = useAuth();
-  
-  // const {saveItem, savedList} = useContext(GlobalContext);
-
-  // let storedItem = savedList.find(saved => saved.id === article.id);
-  
 
   const toggleToSave = () => {
     setSaveLater(!saveLater)
@@ -58,10 +51,6 @@ const NYTCard = ({type, article}) => {
    {article.byline} • {moment(article.published_date).format('LL')}</Card.Subtitle>
  <Card.Text className="abstract">{article.abstract}</Card.Text>
 </Card.Body>
-{/* <Button variant="dark" 
-disabled={savedListDisabled} 
-onClick={toggleToSave}>Save</Button>   */}
-
 <Button variant="dark" 
  onClick={toggleToSave}>
 {saveLater ? 

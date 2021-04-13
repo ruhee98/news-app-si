@@ -3,11 +3,10 @@ import {Row, Col, Button, Form, FormControl, Spinner, Card} from 'react-bootstra
 import NYTArticle  from './nytArticle';
 import NYTCard from './NYTCard';
 import HeaderWithProfile from '../Header/HeaderWithProfile'
-import {useGlobalContext} from './Context';
 import HeaderComponent from '../Header/header';
 import {useAuth} from '../firebase/AuthProvider';
 import ArticleSearch from './ArticleSearch';
-const NYTNews = ({type}) => {
+const NYTNews = () => {
 
 
 
@@ -73,21 +72,6 @@ const searchAllStories = () => {
         setSearchStories([])
       }
       console.log(data)
-      // setSearchStories(data.response.docs);
-      // const headline= data.response.docs[0].headline.main;
-      // const byline =  data.response.docs[0].byline.original;
-      // const headlineUrl= data.response.docs[0].web_url;
-      // const headlinesAbstract= data.response.docs[0].abstract;
-      // setLoading(false);
-
-      // setSearchStories({
-      //   query: "" ,
-      //   firstNewsHeadline: ' ' + headline,
-      //   firstNewsUrl:' '+ headlineUrl,
-      //   firstNewsAbstract: '' + headlinesAbstract,
-      //   byline: ' ' + byline,
-      //   });
-
     }) 
 
 }
@@ -106,12 +90,12 @@ return (
          </h5>
         <Col className="d-flex flex-row-reverse">
         <Form inline>
-        <input type="text" placeholder="Search" 
+        <FormControl type="text" placeholder="Search by keyword.." 
         value={searchStories.query}
         onChange={onSearch.bind(this)}
         className="mr-sm-2" />
         <Button variant="outline-success" type="submit" 
-        onClick={onFormSubmit.bind(this)}>Search</Button>
+        onClick={onFormSubmit.bind(this)}>Search NYT </Button>
         </Form>
          </Col>
         </Row>

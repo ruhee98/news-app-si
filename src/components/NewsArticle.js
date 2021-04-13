@@ -1,14 +1,12 @@
-import React, {Fragment, useState, useContext} from 'react';
+import React, {Fragment, useState} from 'react';
 import {Card, Col, Row, Button} from 'react-bootstrap';
 import {auth, savedItem} from '../firebase/firebase';
 import './styles.css';
 import * as moment from 'moment';
 import {useAuth} from '../firebase/AuthProvider';
-// import { GlobalProvider, GlobalContext } from "./Context";
 
 export function NewsArticle({news}){
 
-  const [saveText, setSaveText] = useState("Save");
   const[saveLater, setSaveLater] = useState(false);
   const {currentUser} = useAuth();
   
@@ -26,7 +24,6 @@ export function NewsArticle({news}){
         img: news.urlToImage || null,
         articleId: key,
       });
-      setSaveText("Saved");
     } else {
       alert("Please sign up for saving bookmarks")
     }

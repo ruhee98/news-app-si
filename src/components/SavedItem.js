@@ -1,7 +1,6 @@
-import React, {useState, useContext, Fragment} from 'react';
-import {Card, Row, Col, Button} from 'react-bootstrap';
+import React, {useState, Fragment} from 'react';
+import {Card, Row, Col} from 'react-bootstrap';
 import RemoveModal from './RemoveModal';
-import {GlobalContext } from "./Context";
 import './styles.css';
 import * as moment from 'moment';
 

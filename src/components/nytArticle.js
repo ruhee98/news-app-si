@@ -1,10 +1,9 @@
-import React, {Fragment, useState, useContext} from 'react';
+import React, {Fragment, useState} from 'react';
 import {Row, Card, Col, Button} from 'react-bootstrap';
 import './styles.css';
 import * as moment from 'moment';
-import {auth, savedItem, postId} from '../firebase/firebase';
+import {auth, savedItem} from '../firebase/firebase';
 import {useAuth} from '../firebase/AuthProvider';
-import { GlobalContext } from "./Context";
 
 const NYTArticle = ({NYTarticle, id, title, byline, url, media, multimedia, abstract, published_date}) => {
 

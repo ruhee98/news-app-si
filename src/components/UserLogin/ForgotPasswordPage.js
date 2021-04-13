@@ -1,6 +1,6 @@
-import React, {useContext, useRef, useState} from 'react';
-import {Container, Card, Form, Alert, Button} from 'react-bootstrap';
-import {Link, useHistory} from "react-router-dom";
+import React, {useRef, useState} from 'react';
+import {Card, Form, Alert, Button} from 'react-bootstrap';
+import {Link} from "react-router-dom";
 import {useAuth} from '../../firebase/AuthProvider';
 
 export const ForgotPasswordPage =  () => {

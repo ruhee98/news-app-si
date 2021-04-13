@@ -1,6 +1,5 @@
-import React, {useReducer, useEffect} from 'react';
+import React, {useReducer} from 'react';
 import reducer from './reducer';
-import {db, auth, savedItem} from '../firebase/firebase';
 
 
 const initialState = {

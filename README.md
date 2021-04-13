@@ -4,8 +4,9 @@ New Aggregator retrieved news from various news sources with real-time updates, 
 ### Usage and Features
 1. Live feed of diverse news content from News API and NYTimes content to derive article details, including full story link, title, section, and abstract.
 2. Allows users to sign up to bookmark articles that is added to the Read Later list that captures and renders information for each saved item.
-3. Can update "Saved Articles" lists as viewers access saved articles
-4. Prevents article duplication in "Saved Articles"
+3. Can update "Saved Articles" list as viewers access saved articles
+4. Can Search Articles by keyword on NYT Articles.
+
 
 ### Getting Started with Create React App
 
@@ -13,23 +14,22 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ### Technologies Used:
 1. React JS 
-2. Firebase Realtime Database, Authentication
+2. Firebase Realtime Database, Authentication, Hosting
 3. News API: https://newsapi.org/ 
 4. and NYT API : https://developer.nytimes.com/apis
 5. React Bootstrap:  https://react-bootstrap.github.io/getting-started/introduction/
 
 ### Packages Used:
-1. react-router-bootstrap
-2. moment - to change format of time
-3. firebase
-4. axios
+1. react-bootstrap
+2. react-router-bootstrap
+3. moment
+4. firebase
 5. Google Fonts
 
 ### Citations:
-1. Firebase Realtime Database Tutorial: https://www.robinwieruch.de/react-firebase-realtime-database
-2. Firebase Authentication : 
-3. Using Async Await APIs
-4. UseContext Hooks
+1. Saving API Data using Firebase Realtime Database: https://www.robinwieruch.de/react-firebase-realtime-database
+2. Firebase React Authentication Tutorial and Private Routing : https://www.youtube.com/watch?v=PKwu15ldZ7k
+4. Search Function: https://www.geeksforgeeks.org/how-to-get-select-elements-value-in-react-bootstrap/
 5. CSS Styling: https://stackoverflow.com/questions/49141874/bootstrap-4-card-panel-with-image-left-of-header-and-title
 
 ### Available Scripts

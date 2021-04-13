@@ -82,8 +82,8 @@ export const Categories = () => {
          <span className="sr-only">Loading...</span>
         </Spinner>
         : 
-    categories.slice(0,18).map(news => 
-    (<Col md={4}>
+    categories.slice(0,22).map(news => 
+    (<Col md={4} sm={8}>
     <NewsByCategory news={news} key={news.url} />
     </Col>
     ))}

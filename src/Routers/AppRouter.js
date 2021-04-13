@@ -1,4 +1,4 @@
-import  React, {Fragment, createContext} from 'react';
+import  React, {Fragment} from 'react';
 import {BrowserRouter, Route, Switch } from 'react-router-dom';
 import HomePage from '../components/HomePage';
 import {Categories} from '../components/Categories';
@@ -11,7 +11,6 @@ import { ProfilePage } from '../components/UserLogin/ProfilePage';
 import { ForgotPasswordPage} from '../components/UserLogin/ForgotPasswordPage';
 import { UpdateProfile} from '../components/UserLogin/UpdateProfile';
 import SavedList from '../components/SavedList';
-import { GlobalProvider } from '../components/Context';
 
 
 const AppRouter = () => {
@@ -22,7 +21,6 @@ const AppRouter = () => {
     <BrowserRouter>
         <br />
         <AuthProvider>
-        <GlobalProvider>
         <Switch>
           <Route path="/" component={HomePage} exact={true} />
           <Route path="/nyt-news" component={NYTNews} />
@@ -37,7 +35,6 @@ const AppRouter = () => {
           <PrivateRoute path="/update-profile" component={UpdateProfile} />
           <PrivateRoute path="/saved-articles" component={SavedList} />
         </Switch>
-        </GlobalProvider>
         </AuthProvider>
         
   </BrowserRouter>

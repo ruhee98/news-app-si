@@ -1,15 +1,11 @@
-import React, {useState, useContext, useEffect} from 'react';
-import {Card, Row, Col, Button} from 'react-bootstrap';
+import React, {useState, useEffect} from 'react';
+import {Row, Col, Button} from 'react-bootstrap';
 import HeaderWithProfile from '../Header/HeaderWithProfile'
 import SavedItem from './SavedItem';
-import {db, auth, savedItem, postId, newPostRef} from '../firebase/firebase';
-import { AuthContext } from '../firebase/AuthProvider';
-import { AppProvider, GlobalContext } from "./Context";
-import Save from "./Save";
+import {auth, savedItem} from '../firebase/firebase';
 
 const SavedList = ({article}) => {
 
-    // const {savedList} = useContext(GlobalContext);
     const [savedArticle, setSavedArticle] = useState([])
 
     useEffect(() => {
