@@ -1,45 +1,37 @@
-import React, {useState, useContext, useReducer, useEffect} from 'react';
-import {auth, savedItem} from '../firebase/firebase';
+import React, {useReducer, useEffect} from 'react';
 import reducer from './reducer';
+import {db, auth, savedItem} from '../firebase/firebase';
 
-const AppContext = React.createContext();
 
-const AppProvider = ({children}) => {
+const initialState = {
+    savedList : [],
+}
 
-    // const [state, dispatch] = useReducer(reducer, initialState);
+export const GlobalContext = React.createContext(initialState);
 
-    const [saveLater, setSaveLater] = useState(false);
-    const toggleSaveLater = () => {
-        setSaveLater(!saveLater)
+export const GlobalProvider = (props) => {
+
+    const [state, dispatch] = useReducer(reducer, initialState);
+
+    //actions   
+    const saveItem = (article) => {
+        dispatch({type: "SAVE_ITEM", payload: article})
     }
 
-
-    const removeData = (articleId) => {
-        var uid = auth.currentUser.uid;
-        savedItem(uid).child(articleId).remove().then(function() {
-            console.log("Remove succeeded.")
-          })
-          .catch(function(error) {
-            console.log("Remove failed: " + error.message)
-    });
+    const removeItemFromSavedList = (id) => {
+        dispatch({type: "REMOVE_ITEM", payload: id})
     }
    
     return (
-        <AppContext.Provider
+        <GlobalContext.Provider
         value={{
-            saveLater,
-            toggleSaveLater,
-            removeData,
+            savedList: state.savedList,
+            saveItem,
+            removeItemFromSavedList,
         }}
         >
-            {children}
-        </AppContext.Provider>
+            {props.children}
+        </GlobalContext.Provider>
     )
     }
 
-
-export const useGlobalContext = () => {
-    return useContext(AppContext)
-}
-
-export {AppContext, AppProvider};

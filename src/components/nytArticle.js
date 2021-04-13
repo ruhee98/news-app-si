@@ -1,30 +1,29 @@
-import React, {Fragment, useState} from 'react';
+import React, {Fragment, useState, useContext} from 'react';
 import {Row, Card, Col, Button} from 'react-bootstrap';
 import './styles.css';
 import * as moment from 'moment';
 import {auth, savedItem, postId} from '../firebase/firebase';
 import {useAuth} from '../firebase/AuthProvider';
+import { GlobalContext } from "./Context";
 
-const NYTArticle = ({title, byline, url, media, multimedia, abstract, published_date}) => {
+const NYTArticle = ({NYTarticle, id, title, byline, url, media, multimedia, abstract, published_date}) => {
 
   const[saveLater, setSaveLater] = useState(false);
   const {currentUser} = useAuth();
-
+  
   const toggleToSave = () => {
-
     setSaveLater(!saveLater)
     if(currentUser) {
       const uid = auth.currentUser.uid;
       var newPostRef = savedItem(uid).push();
       var key = newPostRef.key;
-      // var topStoriesImg = multimedia[0].url;
       newPostRef.set({
-        title: title,
-        byline: byline,
-        abstract : abstract,
-        url : url,
-        img: multimedia.url || null,
-        publishedDate : published_date,
+        title: NYTarticle.title,
+        byline: NYTarticle.byline,
+        abstract : NYTarticle.abstract,
+        url : NYTarticle.url,
+        img: NYTarticle.multimedia[0].url || null,
+        publishedDate : NYTarticle.published_date,
         articleId: key,
       }); 
     } else {
@@ -39,14 +38,14 @@ const NYTArticle = ({title, byline, url, media, multimedia, abstract, published_
                     <Col sm={4}>
                     <Card style={{ width: '55rem' }}>
                       <div className="card-horizontal">
-                      {multimedia &&
-                <Card.Img className="image" style={{ width: '210px', height: '150px'}} src={multimedia[3].url }/>
+                      {NYTarticle.multimedia &&
+                <Card.Img className="image" style={{ width: '210px', height: '150px'}} src={NYTarticle.multimedia[3].url }/>
                 }
     <Card.Body>
- <Card.Link className="heading" href={url}>{title}</Card.Link>
+ <Card.Link className="heading" href={NYTarticle.url}>{NYTarticle.title}</Card.Link>
  <Card.Subtitle className="subheading">
-   {byline} • {moment(published_date).format('LL')}</Card.Subtitle>
- <Card.Text className="abstract">{abstract}</Card.Text>
+   {NYTarticle.byline} • {moment(published_date).format('LL')}</Card.Subtitle>
+ <Card.Text className="abstract">{NYTarticle.abstract}</Card.Text>
 </Card.Body>
 <Card.Footer>
  <Button variant="transparent" className="readLater" onClick={toggleToSave} >

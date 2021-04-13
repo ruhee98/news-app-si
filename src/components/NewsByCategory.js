@@ -1,7 +1,8 @@
-import React, {Fragment, useState} from 'react';
+import React, {Fragment, useState, useContext} from 'react';
 import {Card, Button} from 'react-bootstrap';
 import {auth, savedItem} from '../firebase/firebase';
 import {useAuth} from '../firebase/AuthProvider';
+import { GlobalProvider, GlobalContext } from "./Context";
 
 export const NewsByCategory = ({news}) => {
 
@@ -9,8 +10,10 @@ export const NewsByCategory = ({news}) => {
   const [saveText, setSaveText] = useState("Save");
   const {currentUser} = useAuth();
 
+  // const {saveItem, savedList} = useContext(GlobalContext);
 
 const toggleToSave = () => {
+  setSaveLater(!saveLater)
   if(currentUser){
     setSaveLater(!saveLater)
     const uid = auth.currentUser.uid;
@@ -52,7 +55,7 @@ const toggleToSave = () => {
       <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z"/>
     </svg>
   )}
-  {saveText}
+  Save
   </Button>
 </Card>
     )

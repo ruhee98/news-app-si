@@ -45,7 +45,7 @@ const HomePage = () => {
          : 
         result.slice(0,15).map(news => 
         (<Col md={4}>
-        <NewsArticle news={news} key={news.url}/>
+        <NewsArticle news={news} key={news.id}/>
         </Col>
         ))
         }

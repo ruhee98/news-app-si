@@ -1,36 +1,32 @@
-import React, {useState, useEffect} from 'react';
-import {useGlobalContext} from './Context';
+import React, {useState, useContext, useEffect} from 'react';
 import {Card, Row, Col, Button} from 'react-bootstrap';
 import HeaderWithProfile from '../Header/HeaderWithProfile'
 import SavedItem from './SavedItem';
 import {db, auth, savedItem, postId, newPostRef} from '../firebase/firebase';
 import { AuthContext } from '../firebase/AuthProvider';
+import { AppProvider, GlobalContext } from "./Context";
+import Save from "./Save";
 
-const SavedList = () => {
- 
-    // const {clearList} = useGlobalContext();
+const SavedList = ({article}) => {
 
-    const initialState = {
-        saveLater: false,
-        articles: [],
-    }
-    const [savedArticle, setSavedArticle] = useState(initialState)
+    // const {savedList} = useContext(GlobalContext);
+    const [savedArticle, setSavedArticle] = useState([])
 
     useEffect(() => {
             auth.onAuthStateChanged(function(uid){ 
                 uid = auth.currentUser.uid;
                 savedItem(uid).on("value", (snap) => {
                     const articleObject = snap.val();
-                        if (articleObject) {
+                if (articleObject) {
                 const articleList = Object.keys(articleObject).map(articleId => ({
                     ...articleObject[articleId],
                     uid: articleId,
-                }))
-                            setSavedArticle({articles: articleList, saveLater: true})
-                            console.log(articleList);
-                        } else {
-                            setSavedArticle({articles: null, saveLater: false})
-                        }
+                }))                
+                setSavedArticle({savedList: articleList}) 
+                console.log(articleList);      
+                } else {
+                setSavedArticle({savedList: null})
+                }
                 })
                  return () =>
                 savedItem(uid).off();
@@ -57,7 +53,7 @@ const SavedList = () => {
         });
     }
 
-    const {articles} = savedArticle; 
+    const {savedList} = savedArticle; 
 
     return (
             <div>
@@ -67,16 +63,16 @@ const SavedList = () => {
                 Clear Reading List
             </Button>
             <Row>
-            {articles ? 
-                
-                (articles.map((savedItem) => 
+            {savedList ?
+                (savedList.map((article) => 
                 (<Col md={4} sm={8}>
-                <SavedItem {...savedItem} removeData={removeData} />
+                <SavedItem {...article} removeData={removeData} />
                 </Col>                    
-                ))) : (
-                <div> There are no saved items</div>
+                ))) 
+                : (
+                <h4 className="header"> There are no saved items</h4>
                 )
-                }   
+            } 
             </Row>
                        
                 
