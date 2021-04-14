@@ -38,8 +38,12 @@ const NYTArticle = ({NYTarticle, id, title, byline, url, media, multimedia, abst
                     <Card style={{ width: '55rem' }}>
                       <div className="card-horizontal">
                       {NYTarticle.multimedia &&
-                <Card.Img className="image" style={{ width: '210px', height: '150px'}} src={NYTarticle.multimedia[3].url }/>
-                }
+                    <Card.Img className="image" variant="top" style={{width: 200, height: 160}}
+                    src={NYTarticle?.multimedia?.[0]?.url?
+                     `https://nyt.com/${NYTarticle.multimedia[0].url}` : 
+                     'https://upload.wikimedia.org/wikipedia/commons/4/40/New_York_Times_logo_variation.jpg'
+                     } alt="news-img"/> 
+                 }
     <Card.Body>
  <Card.Link className="heading" href={NYTarticle.url}>{NYTarticle.title}</Card.Link>
  <Card.Subtitle className="subheading">

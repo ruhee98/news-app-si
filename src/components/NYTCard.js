@@ -21,7 +21,7 @@ const NYTCard = ({type, article}) => {
         byline: article.byline,
         abstract : article.abstract,
         url : article.url,
-        img: article.media[0]['media-metadata'][2].url || null,
+        // img: article.media[0]['media-metadata'][2].url,
         publishedDate : article.published_date,
         articleId: key,
       }); 
