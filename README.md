@@ -7,6 +7,8 @@ New Aggregator retrieved news from various news sources with real-time updates, 
 3. Can update "Saved Articles" list as viewers access saved articles
 4. Can Search Articles by keyword on NYT Articles.
 
+### Demo
+![News App Demo](Demo.gif)
 
 ### Getting Started with Create React App
 
